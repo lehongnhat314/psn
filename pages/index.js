@@ -12,9 +12,7 @@ const getData = () => {
     useEffect( () => { 
         async function fetchData() {
             try {
-                console.log("HERE");
-                const myNpsso = "zzz";
-
+                const myNpsso = process.env.NEXT_PUBLIC_PSN_KEY;                
                 // We'll exchange your NPSSO for a special access code.
                 const accessCode = await exchangeNpssoForCode(myNpsso);
 
