@@ -16,7 +16,8 @@ const getData = () => {
                   method: "POST",
                 });
                 const response_json = await response.json();
-                setData(response_json.data);
+                console.log(response_json.data);
+                setData(JSON.stringify(response_json.data));
             } catch (err) {
                 console.log(err);
             }
