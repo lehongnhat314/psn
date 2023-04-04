@@ -12,21 +12,11 @@ const getData = () => {
     useEffect( () => { 
         async function fetchData() {
             try {
-                const myNpsso = process.env.NEXT_PUBLIC_PSN_KEY;                
-                // We'll exchange your NPSSO for a special access code.
-                const accessCode = await exchangeNpssoForCode(myNpsso);
-
-                // We can use the access code to get your access token and refresh token.
-                const authorization = await exchangeCodeForAccessToken(accessCode);
-
-                // This returns a list of all the games you've earned trophies for.
-                const userTitlesResponse = await getUserTitles(
-                  { accessToken: authorization.accessToken },
-                  "me"
-                );
-                console.log(userTitlesResponse);
-                setData(userTitlesResponse);
-                ;
+                const response = await fetch("/api/fetchData", {
+                  method: "POST",
+                });
+                const response_json = await response.json();
+                setData(response_json.data);
             } catch (err) {
                 console.log(err);
             }
